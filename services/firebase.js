@@ -15,14 +15,12 @@ const getFirebaseByName = async (username) => {
     const firebase = await Firebase.findOne({ username });
     return firebase;
 };
-const deleteFirebase = async (firebase) => {
+const deleteFirebase = async (username) => {
     try {
-        if (!firebase) return null;
-        await firebase.remove();
-        return firebase;
+        await Firebase.findOneAndRemove({username });
     } catch (err) {
         console.log('err: !!!!!', err);
 
     }
 };
-module.exports = { saveToken, getToken,getFirebaseByName }
+module.exports = { saveToken, getToken,getFirebaseByName,deleteFirebase }

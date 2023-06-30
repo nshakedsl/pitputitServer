@@ -17,19 +17,19 @@ const saveToken = async (req, res) => {
 const deleteToken = async (req, res) => {
 
     try {
-        if(!req || !req.body || !req.body.username){
+        if (!req || !req.body || !req.body.username) {
             return res.status(400).json({ errors: ['illegal request'] });
         }
         const name = req.body.username
-        if(!name){
+        if (!name) {
             return res.status(404).json({ errors: ['username not found'] });
         }
-        const firebase = await firebaseService.getFirebaseByName(name)
-        if(!firebase){
-            return res.status(400).json({ errors: ['an error has occured'] });
+        try {
+            await firebaseService.deleteFirebase(name)
+            return res.status(200).json({});
+        } catch (errr) {
+            console.log('errr: ', errr);
         }
-        await firebaseService.deleteFirebase(firebase)
-        return res.status(200).json({});
     }
     catch (err) {
 
@@ -37,4 +37,4 @@ const deleteToken = async (req, res) => {
 
     res.json({});
 };
-module.exports = { saveToken };
+module.exports = { saveToken, deleteToken };

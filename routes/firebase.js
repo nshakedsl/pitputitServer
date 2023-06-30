@@ -4,7 +4,8 @@ const express = require('express');
 var router = express.Router();
 
 router.route('/')
-    .post(firebaseController.saveToken);
+    .post(firebaseController.saveToken)
+    .delete(firebaseController.deleteToken);
 
 
 
