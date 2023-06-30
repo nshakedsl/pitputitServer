@@ -75,3 +75,31 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT, () => {
     console.log(`Server listening on port ${process.env.PORT}`);
 });
+
+
+app.post('/api/sendNotification', async (req, res) => {
+    const { username, message } = req.body;
+    console.log('message: ', message);
+    console.log('username: ', username);
+    const token = await firebaseService.getToken(username)
+    console.log('token: ', token);
+
+    const notification = {
+        title: 'New Message',
+        body: message,
+    };
+
+    const messagePayload = {
+        token,
+        notification,
+    };
+
+    try {
+        const response = await admin.messaging().send(messagePayload);
+        console.log('Push notification sent successfully:', response);
+        res.status(200).json({ message: 'Push notification sent successfully' });
+    } catch (error) {
+        console.error('Error sending push notification:', error);
+        res.status(500).json({ error: 'Error sending push notification' });
+    }
+});
