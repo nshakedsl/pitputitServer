@@ -13,9 +13,9 @@ https://github.com/nshakedsl/Pitputit3.git
 - using MongoDB Compass are provided below (you can use also Mongosh):
 - Ensure that the MongoDB Compass application is installed.
 - Open the downloaded application and note the following message via the default URI:
-    ```
-    "mongodb://localhost:27017"
-    ```
+```
+    mongodb://localhost:27017
+```
 
 - Click the connect button.
 
@@ -67,6 +67,7 @@ npm start linux
 
 
 - To complete the setup process, all that remains is to run the client and indulge in our application. 😊
+complete the instructions in the following link. 
 
 ```
 https://github.com/nshakedsl/Pitputit3.git
